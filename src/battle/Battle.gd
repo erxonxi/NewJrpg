@@ -1,13 +1,31 @@
 extends Control
 class_name Battle
 
-func _ready():
-	initialize()
+func initialize(characters: Array, enemies: Array):
+	var character_positions := [
+		$Positions/Character1,
+		$Positions/Character2,
+		$Positions/Character3,
+		$Positions/Character4
+	]
 
-func initialize():
-	set_attacks_names("Punch", "Shoot", "", "")
-	set_magics_names("Fire Blast", "", "", "")
-
+	var enemy_positions := [
+		$Positions/Enemy1,
+		$Positions/Enemy2,
+		$Positions/Enemy3,
+		$Positions/Enemy4
+	]
+	
+	var index = 0
+	for character in characters:
+		character.skin.position = character_positions[index].position
+		index += 1
+	
+	index = 0
+	for enemy in enemies:
+		enemy.skin.position = enemy_positions[index].position
+		index += 1
+		
 func set_attacks_names(attack1, attack2, attack3, attack4):
 	$PlayerPanel/Container/Tabs/Attacks/Container1/Attack1.text = attack1
 	$PlayerPanel/Container/Tabs/Attacks/Container1/Attack2.text = attack2

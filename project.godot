@@ -14,6 +14,21 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/battle/Battle.gd"
 }, {
+"base": "Node2D",
+"class": "Character",
+"language": "GDScript",
+"path": "res://src/characters/Character.gd"
+}, {
+"base": "Resource",
+"class": "CharacterData",
+"language": "GDScript",
+"path": "res://src/characters/CharacterData.gd"
+}, {
+"base": "Resource",
+"class": "CharacterStats",
+"language": "GDScript",
+"path": "res://src/characters/CharacterStats.gd"
+}, {
 "base": "Node",
 "class": "Game",
 "language": "GDScript",
@@ -26,6 +41,9 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Battle": "",
+"Character": "",
+"CharacterData": "",
+"CharacterStats": "",
 "Game": "",
 "MainMenu": ""
 }

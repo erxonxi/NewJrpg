@@ -54,7 +54,7 @@ text = "Exit"
 
 [node name="Tabs" type="TabContainer" parent="PlayerPanel/Container"]
 margin_left = 124.0
-margin_right = 476.0
+margin_right = 504.0
 margin_bottom = 80.0
 tab_align = 0
 tabs_visible = false
@@ -159,6 +159,32 @@ margin_right = 372.0
 margin_bottom = 30.0
 size_flags_horizontal = 3
 text = "Magic4"
+
+[node name="Positions" type="Node2D" parent="."]
+
+[node name="Character1" type="Position2D" parent="Positions"]
+position = Vector2( 97, 67 )
+
+[node name="Character2" type="Position2D" parent="Positions"]
+position = Vector2( 58, 129 )
+
+[node name="Character3" type="Position2D" parent="Positions"]
+position = Vector2( 209, 67 )
+
+[node name="Character4" type="Position2D" parent="Positions"]
+position = Vector2( 179, 129 )
+
+[node name="Enemy1" type="Position2D" parent="Positions"]
+position = Vector2( 341, 68 )
+
+[node name="Enemy2" type="Position2D" parent="Positions"]
+position = Vector2( 302, 130 )
+
+[node name="Enemy3" type="Position2D" parent="Positions"]
+position = Vector2( 453, 68 )
+
+[node name="Enemy4" type="Position2D" parent="Positions"]
+position = Vector2( 423, 130 )
 
 [connection signal="pressed" from="PlayerPanel/Container/Actions/Attack" to="." method="_on_Attack_pressed"]
 [connection signal="pressed" from="PlayerPanel/Container/Actions/Magics" to="." method="_on_Magics_pressed"]
