@@ -13,15 +13,32 @@ _global_script_classes=[ {
 "class": "Battle",
 "language": "GDScript",
 "path": "res://src/battle/Battle.gd"
+}, {
+"base": "Node",
+"class": "Game",
+"language": "GDScript",
+"path": "res://src/Game.gd"
+}, {
+"base": "Control",
+"class": "MainMenu",
+"language": "GDScript",
+"path": "res://src/main_menu/MainMenu.gd"
 } ]
 _global_script_class_icons={
-"Battle": ""
+"Battle": "",
+"Game": "",
+"MainMenu": ""
 }
 
 [application]
 
 config/name="New Jrpg"
+run/main_scene="res://src/Game.tscn"
 config/icon="res://icon.png"
+
+[autoload]
+
+Team="*res://src/Team.gd"
 
 [display]
 
