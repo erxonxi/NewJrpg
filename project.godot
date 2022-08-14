@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Node",
+"class": "AttackSkill",
+"language": "GDScript",
+"path": "res://src/characters/skills/AttackSkill.gd"
+}, {
+"base": "Node",
+"class": "Attacks",
+"language": "GDScript",
+"path": "res://src/characters/skills/Attacks.gd"
+}, {
 "base": "Control",
 "class": "Battle",
 "language": "GDScript",
@@ -34,18 +44,38 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://src/Game.gd"
 }, {
+"base": "Node",
+"class": "MagicSkill",
+"language": "GDScript",
+"path": "res://src/characters/skills/MagicSkill.gd"
+}, {
+"base": "Node",
+"class": "Magics",
+"language": "GDScript",
+"path": "res://src/characters/skills/Magics.gd"
+}, {
 "base": "Control",
 "class": "MainMenu",
 "language": "GDScript",
 "path": "res://src/main_menu/MainMenu.gd"
+}, {
+"base": "Resource",
+"class": "Skill",
+"language": "GDScript",
+"path": "res://src/characters/skills/Skill.gd"
 } ]
 _global_script_class_icons={
+"AttackSkill": "",
+"Attacks": "",
 "Battle": "",
 "Character": "",
 "CharacterData": "",
 "CharacterStats": "",
 "Game": "",
-"MainMenu": ""
+"MagicSkill": "",
+"Magics": "",
+"MainMenu": "",
+"Skill": ""
 }
 
 [application]

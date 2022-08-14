@@ -14,11 +14,11 @@ func start_battle():
 	var battle: Battle = battle_scene.instance()
 	var first_character: Character = character_scene.instance()
 	
-	first_character.initialize(2, 64)
+	first_character.initialize(2, 64, [1], [1])
 	$Party.add_child(first_character)
 	
 	var first_enemy: Character = character_scene.instance()
-	first_enemy.initialize(1, 64)
+	first_enemy.initialize(1, 64, [1], [1])
 	$Enemies.add_child(first_enemy)
 	
 	battle.initialize($Party.get_children(), $Enemies.get_children())
