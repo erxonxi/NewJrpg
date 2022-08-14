@@ -1,18 +1,28 @@
 extends Control
 class_name Battle
 
+signal characters_turn
+signal enemy_turn
+
 var characters: Array = []
 var enemies: Array = []
+
+var turn := 1
+var enemy_selected := 0
+var player_selected := 0
 
 func initialize(battle_characters: Array, battle_enemies: Array):
 	characters = battle_characters
 	enemies = battle_enemies
 	
-	init_characters(characters)
-	init_enemies(enemies)
+	init_characters()
+	init_enemies()
 	init_first_character_menu()
+	
+	connect("characters_turn", self, "_on_characters_turn")
+	connect("enemy_turn", self, "_on_enemy_turn")
 		
-func init_characters(characters: Array):
+func init_characters():
 	var character_positions := [
 		$Positions/Character1,
 		$Positions/Character2,
@@ -25,7 +35,7 @@ func init_characters(characters: Array):
 		character.skin.position = character_positions[index].position
 		index += 1
 	
-func init_enemies(enemies: Array):
+func init_enemies():
 	var enemy_positions := [
 		$Positions/Enemy1,
 		$Positions/Enemy2,
@@ -88,6 +98,62 @@ func set_magics_names(magic1, magic2, magic3, magic4):
 	if magic4 == "":
 		$PlayerPanel/Container/Tabs/Magics/Container2/Magic4.disabled = true
 
+func next_turn():
+	var max_turn = characters.size() + enemies.size()
+	if (turn < max_turn):
+		turn += 1
+	else:
+		turn = 1
+		
+	if turn == 1:
+		emit_signal("character_turn")
+	elif turn == 2:
+		emit_signal("enemy_turn")
+	elif turn == 3:
+		emit_signal("character_turn")
+	elif turn == 4:
+		emit_signal("enemy_turn")
+	elif turn == 5:
+		emit_signal("character_turn")
+	elif turn == 6:
+		emit_signal("enemy_turn")
+	elif turn == 7:
+		emit_signal("character_turn")
+	elif turn == 8:
+		emit_signal("enemy_turn")
+
+func get_character_of_turn() -> Character:
+	var character: Character
+	if turn == 1:
+		character = characters[0]
+	elif turn == 3:
+		character = characters[1]
+	elif turn == 5:
+		character = characters[2]
+	elif turn == 7:
+		character = characters[3]
+	return character
+
+func get_enemie_selected() -> Character:
+	return enemies[enemy_selected] as Character
+
+func attack_by_index(index: int):
+	var character = get_character_of_turn()
+	var attack: AttackSkill = character.attacks.get_attacks()[index]
+	var hit = attack.get_hit(character.stats._get_strength())
+	var enemy = get_enemie_selected()
+	enemy.stats.take_damage(hit)
+
+# Logic
+func _on_characters_turn():
+	$PlayerPanel/Container/Tabs.show()
+
+func _on_enemy_turn():
+	$PlayerPanel/Container/Tabs.hide()
+	
+	yield(get_tree().create_timer(2), "timeout")
+	
+
 # User Menu Buttons
 func _on_Attack_pressed():
 	$PlayerPanel/Container/Tabs.current_tab = 0
@@ -100,26 +166,31 @@ func _on_Exit_pressed():
 
 # Attacks Buttons
 func _on_Attack1_pressed():
-	pass
+	attack_by_index(0)
+	next_turn()
 
 func _on_Attack2_pressed():
-	pass
+	attack_by_index(1)
+	next_turn()
 
 func _on_Attack3_pressed():
-	pass
+	attack_by_index(2)
+	next_turn()
 
 func _on_Attack4_pressed():
-	pass
+	attack_by_index(3)
+	next_turn()
 
 # Magics Buttons
 func _on_Magic1_pressed():
-	pass
+	next_turn()
 
 func _on_Magic2_pressed():
-	pass
+	next_turn()
 
 func _on_Magic3_pressed():
-	pass
+	next_turn()
 
 func _on_Magic4_pressed():
-	pass
+	next_turn()
+
