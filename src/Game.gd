@@ -14,7 +14,7 @@ func _ready():
 func new_game():
 	Team.members.append({
 		'id': 2,
-		'experience': 300,
+		'experience': 1,
 		'attacks_ids': [1],
 		'magics_ids': [1]
 	})
@@ -72,7 +72,7 @@ func game_complated():
 
 func _on_vicotry():
 	for memmber in Team.members:
-		memmber.experience += 1500
+		memmber.experience += 100 * level
 	
 	battle.queue_free()
 	$Overlay/Panel/Label.text = "Victory"

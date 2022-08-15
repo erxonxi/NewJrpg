@@ -26,6 +26,8 @@ func initialize(charater_index: int, character_experience: int, character_attack
 	stats = character_data.create_stats(experience)
 	$Skin/Sprite.texture = character_data.texture
 	character_name = character_data.name
+	level = stats.level
+	$Skin/Label.text = "%s LVL %d" % [character_name, level]
 	
 	setup_attacks()
 	setup_magics()
@@ -34,6 +36,7 @@ func initialize(charater_index: int, character_experience: int, character_attack
 	$Skin/Bars/Health.max_value = stats.health
 	$Skin/Bars/Health.value = stats.health
 	
+	stats.connect("health_changed", self, "on_health_changed")
 	stats.connect("health_changed", self, "on_health_changed")
 
 func on_health_changed(new_health, old_health):

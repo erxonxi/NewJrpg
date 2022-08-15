@@ -1,19 +1,35 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" load_steps=8 format=2]
 
 [ext_resource path="res://src/characters/CharacterData.gd" type="Script" id=1]
 [ext_resource path="res://assets/characters/char_39.png" type="Texture" id=2]
 
 [sub_resource type="Curve" id=1]
 max_value = 150.0
-_data = [ Vector2( 0, 0 ), 0.0, 323.077, 0, 0, Vector2( 0.373434, 92.7273 ), 0.0, 0.0, 0, 0, Vector2( 0.764411, 111.818 ), 155.455, 155.455, 0, 0, Vector2( 1, 150 ), -11.5809, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 40.9091 ), 0.0, 323.077, 0, 0, Vector2( 0.31982, 87.2727 ), 0.0, 0.0, 0, 0, Vector2( 0.797297, 100.909 ), 155.455, 155.455, 0, 0, Vector2( 1, 150 ), -11.5809, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=2]
+max_value = 150.0
+_data = [ Vector2( 0, 19.0909 ), 0.0, 323.077, 0, 0, Vector2( 0.427928, 88.6364 ), 0.0, 0.0, 0, 0, Vector2( 0.756757, 124.091 ), 155.455, 155.455, 0, 0, Vector2( 1, 150 ), -11.5809, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=3]
+max_value = 150.0
+_data = [ Vector2( 0, 10.9091 ), 0.0, 323.077, 0, 0, Vector2( 0.459459, 70.9091 ), 0.0, 0.0, 0, 0, Vector2( 0.764411, 111.818 ), 155.455, 155.455, 0, 0, Vector2( 1, 150 ), -11.5809, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=4]
+max_value = 150.0
+_data = [ Vector2( 0, 32.7273 ), 0.0, 323.077, 0, 0, Vector2( 0.31982, 85.9091 ), 0.0, 0.0, 0, 0, Vector2( 0.761261, 120 ), 155.455, 155.455, 0, 0, Vector2( 1, 150 ), -11.5809, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=5]
+max_value = 150.0
+_data = [ Vector2( 0, 20.4545 ), 0.0, 323.077, 0, 0, Vector2( 0.400901, 66.8182 ), 0.0, 0.0, 0, 0, Vector2( 0.738739, 129.545 ), 155.455, 155.455, 0, 0, Vector2( 1, 150 ), -11.5809, 0.0, 0, 0 ]
 
 [resource]
 script = ExtResource( 1 )
 name = "Francii"
 texture = ExtResource( 2 )
-level_lookup = [ 0, 0, 64, 92, 175, 392, 569, 765, 1252, 2000 ]
-max_health_curve = SubResource( 1 )
-max_mana_curve = SubResource( 1 )
-strength_curve = SubResource( 1 )
+level_lookup = [ 0, 0, 100, 300, 700, 1500, 3100, 6500, 13100, 16300 ]
+max_health_curve = SubResource( 2 )
+max_mana_curve = SubResource( 3 )
+strength_curve = SubResource( 5 )
 defense_curve = SubResource( 1 )
-speed_curve = SubResource( 1 )
+speed_curve = SubResource( 4 )

@@ -4,13 +4,14 @@
 [ext_resource path="res://assets/characters/char_35.png" type="Texture" id=2]
 
 [sub_resource type="Curve" id=1]
-_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
+max_value = 100.0
+_data = [ Vector2( 0, 5.45454 ), 0.0, 0.0, 0, 0, Vector2( 1, 100 ), 0.0, 0.0, 0, 0 ]
 
 [resource]
 script = ExtResource( 1 )
 name = "Skeleton"
 texture = ExtResource( 2 )
-level_lookup = [ 0, 0, 61, 90, 150, 390 ]
+level_lookup = [ 0, 0, 100, 300, 700, 1500, 3100 ]
 max_health_curve = SubResource( 1 )
 max_mana_curve = SubResource( 1 )
 strength_curve = SubResource( 1 )
