@@ -72,7 +72,7 @@ func game_complated():
 
 func _on_vicotry():
 	for memmber in Team.members:
-		memmber.experience += 500
+		memmber.experience += 1000
 	
 	print(Team.members[0]["experience"])
 	

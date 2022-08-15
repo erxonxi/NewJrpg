@@ -5,13 +5,13 @@
 
 [sub_resource type="Curve" id=1]
 max_value = 150.0
-_data = [ Vector2( 0, 0 ), 0.0, 323.077, 0, 0, Vector2( 1, 150 ), -11.5809, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 39.5455 ), 0.0, 323.077, 0, 0, Vector2( 0.640827, 125.455 ), 0.0, 0.0, 0, 0, Vector2( 1, 150 ), -11.5809, 0.0, 0, 0 ]
 
 [resource]
 script = ExtResource( 1 )
 name = "Francii"
 texture = ExtResource( 2 )
-level_lookup = [ 0, 0, 75, 145, 293, 462 ]
+level_lookup = [ 0, 0, 64, 92, 175, 392, 569, 765, 1252, 2000 ]
 max_health_curve = SubResource( 1 )
 max_mana_curve = SubResource( 1 )
 strength_curve = SubResource( 1 )
