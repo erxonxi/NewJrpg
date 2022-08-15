@@ -31,6 +31,15 @@ func initialize(charater_index: int, character_experience: int, character_attack
 	setup_magics()
 	
 	$Skin/Selector.hide()
+	$Skin/Bars/Health.max_value = stats.health
+	$Skin/Bars/Health.value = stats.health
+	print($Skin/Bars/Health.max_value)
+	print($Skin/Bars/Health.value)
+	
+	stats.connect("health_changed", self, "on_health_changed")
+
+func on_health_changed(new_health, old_health):
+	$Skin/Bars/Health.value = stats.health
 
 func play_damaged():
 	$Skin/AnimationPlayer.play("damaged")
