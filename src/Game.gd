@@ -72,9 +72,7 @@ func game_complated():
 
 func _on_vicotry():
 	for memmber in Team.members:
-		memmber.experience += 1000
-	
-	print(Team.members[0]["experience"])
+		memmber.experience += 1500
 	
 	battle.queue_free()
 	$Overlay/Panel/Label.text = "Victory"
@@ -82,6 +80,11 @@ func _on_vicotry():
 	$Overlay/Panel/Buttons/NextLevel.show()
 	$Overlay/Panel/Buttons/Restart.show()
 	$Overlay/Panel/Buttons/Exit.show()
+	
+	if level == Levels.enemies.size() - 1:
+		$Overlay/Panel/Buttons/NextLevel.hide()
+		$Overlay/Panel/Label.text = "Game Completed!"
+	
 	$Overlay.show()
 
 func _on_defeat():

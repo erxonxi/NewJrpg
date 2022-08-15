@@ -19,7 +19,7 @@ var enemies := [
 			'magics_ids': [1]
 		},
 		{
-			'id': 2,
+			'id': 3,
 			'experience': 92,
 			'attacks_ids': [1],
 			'magics_ids': [1]
@@ -34,7 +34,7 @@ var enemies := [
 			'magics_ids': [1]
 		},
 		{
-			'id': 2,
+			'id': 3,
 			'experience': 128,
 			'attacks_ids': [1],
 			'magics_ids': [1]

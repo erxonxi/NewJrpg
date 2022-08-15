@@ -1,17 +1,16 @@
 [gd_resource type="Resource" load_steps=4 format=2]
 
 [ext_resource path="res://src/characters/CharacterData.gd" type="Script" id=1]
-[ext_resource path="res://assets/characters/char_39.png" type="Texture" id=2]
+[ext_resource path="res://assets/characters/char_35.png" type="Texture" id=2]
 
 [sub_resource type="Curve" id=1]
-max_value = 150.0
-_data = [ Vector2( 0, 0 ), 0.0, 323.077, 0, 0, Vector2( 0.373434, 92.7273 ), 0.0, 0.0, 0, 0, Vector2( 0.764411, 111.818 ), 155.455, 155.455, 0, 0, Vector2( 1, 150 ), -11.5809, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 1 ), 0.0, 0.0, 0, 0 ]
 
 [resource]
 script = ExtResource( 1 )
-name = "Francii"
+name = "Skeleton"
 texture = ExtResource( 2 )
-level_lookup = [ 0, 0, 64, 92, 175, 392, 569, 765, 1252, 2000 ]
+level_lookup = [ 0, 0, 61, 90, 150, 390 ]
 max_health_curve = SubResource( 1 )
 max_mana_curve = SubResource( 1 )
 strength_curve = SubResource( 1 )
