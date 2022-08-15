@@ -14,6 +14,7 @@ var mana: int setget set_mana
 export var max_health: int = 1 setget set_max_health, _get_max_health
 export var max_mana: int = 0 setget set_max_mana, _get_max_mana
 export var strength: int = 1 setget , _get_strength
+export var intelligence: int = 1 setget , _get_intelligence
 export var defense: int = 1 setget , _get_defense
 export var speed: int = 1 setget , _get_speed
 var is_alive: bool setget , _is_alive
@@ -88,6 +89,9 @@ func _get_max_mana() -> int:
 
 
 func _get_strength() -> int:
+	return strength
+	
+func _get_intelligence() -> int:
 	return strength
 
 

@@ -1,19 +1,40 @@
-[gd_resource type="Resource" load_steps=4 format=2]
+[gd_resource type="Resource" load_steps=9 format=2]
 
 [ext_resource path="res://src/characters/CharacterData.gd" type="Script" id=1]
 [ext_resource path="res://assets/characters/char_35.png" type="Texture" id=2]
 
 [sub_resource type="Curve" id=1]
+max_value = 0.01
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=2]
+max_value = 0.01
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=3]
+max_value = 150.0
+_data = [ Vector2( 0, 8.18182 ), 0.0, 0.0, 0, 0, Vector2( 1, 150 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=4]
+max_value = 0.01
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 0 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=5]
 max_value = 100.0
-_data = [ Vector2( 0, 5.45454 ), 0.0, 0.0, 0, 0, Vector2( 1, 100 ), 0.0, 0.0, 0, 0 ]
+_data = [ Vector2( 0, 0 ), 0.0, 0.0, 0, 0, Vector2( 1, 100 ), 0.0, 0.0, 0, 0 ]
+
+[sub_resource type="Curve" id=6]
+max_value = 150.0
+_data = [ Vector2( 0, 0.00109091 ), 0.0, 0.0, 0, 0, Vector2( 1, 150 ), 0.0, 0.0, 0, 0 ]
 
 [resource]
 script = ExtResource( 1 )
 name = "Skeleton"
 texture = ExtResource( 2 )
 level_lookup = [ 0, 0, 100, 300, 700, 1500, 3100 ]
-max_health_curve = SubResource( 1 )
-max_mana_curve = SubResource( 1 )
-strength_curve = SubResource( 1 )
+max_health_curve = SubResource( 3 )
+max_mana_curve = SubResource( 4 )
+strength_curve = SubResource( 6 )
+intelligence_curve = SubResource( 2 )
 defense_curve = SubResource( 1 )
-speed_curve = SubResource( 1 )
+speed_curve = SubResource( 5 )

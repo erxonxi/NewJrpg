@@ -164,6 +164,27 @@ func attack_by_index(index: int):
 		player_turn = 0
 	
 	next_turn()
+
+func magic_by_index(index: int):
+	var character = get_character_of_turn()
+	var magic: MagicSkill = character.magics.get_magics()[index]
+	var hit = magic.get_hit(character.stats.intelligence)
+	var enemy = get_enemie_selected()
+	enemy.play_damaged()
+	enemy.stats.take_damage(hit)
+	
+	if enemy.stats.health <= 0:
+		enemy.get_parent().remove_child(enemy)
+		enemy.queue_free()
+		enemies.remove(enemy_selected)
+		check_enemies_alive()
+		
+	if player_turn < characters.size() - 1:
+		player_turn += 1
+	else:
+		player_turn = 0
+	
+	next_turn()
 		
 func check_enemies_alive():
 	if enemies.size() == 0:
@@ -177,6 +198,7 @@ func enemy_attack_by_index(index: int):
 	var enemy = get_enemy_of_turn()
 	var attack: AttackSkill = enemy.attacks.get_attacks()[index]
 	var hit = attack.get_hit(enemy.stats._get_strength())
+	
 	var character = get_character_selected()
 	character.play_damaged()
 	character.stats.take_damage(hit)
@@ -237,7 +259,7 @@ func _on_Magics_pressed():
 	$PlayerPanel/Container/Tabs.current_tab = 1
 
 func _on_Exit_pressed():
-	print("Exiting battle...")
+	next_turn()
 
 # Attacks Buttons
 func _on_Attack1_pressed():
@@ -254,14 +276,14 @@ func _on_Attack4_pressed():
 
 # Magics Buttons
 func _on_Magic1_pressed():
-	next_turn()
+	magic_by_index(0)
 
 func _on_Magic2_pressed():
-	next_turn()
+	magic_by_index(1)
 
 func _on_Magic3_pressed():
-	next_turn()
+	magic_by_index(2)
 
 func _on_Magic4_pressed():
-	next_turn()
+	magic_by_index(3)
 

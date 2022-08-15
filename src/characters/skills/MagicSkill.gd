@@ -3,7 +3,7 @@ class_name MagicSkill
 
 var magic_name := "MagicSkill"
 var index := 1
-var multiplier := 0
+var multiplier := 0.0
 
 func initialize(magic_index: int):
 	index = magic_index

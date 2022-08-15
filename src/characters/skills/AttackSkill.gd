@@ -3,7 +3,7 @@ class_name AttackSkill
 
 var attack_name := "AttackSkill"
 var index := 1
-var multiplier: float = 0
+var multiplier: float = 0.0
 
 func initialize(attack_index: int):
 	index = attack_index

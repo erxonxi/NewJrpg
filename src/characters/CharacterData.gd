@@ -7,6 +7,7 @@ export var level_lookup: Array = []
 export var max_health_curve: Curve
 export var max_mana_curve: Curve
 export var strength_curve: Curve
+export var intelligence_curve: Curve
 export var defense_curve: Curve
 export var speed_curve: Curve
 
@@ -17,6 +18,7 @@ func create_stats(experience: int) -> CharacterStats:
 	stats.max_health = _get_max_health(experience)
 	stats.max_mana = _get_max_mana(experience)
 	stats.strength = _get_strength(experience)
+	stats.intelligence = _get_intelligence(experience)
 	stats.defense = _get_defense(experience)
 	stats.speed = _get_speed(experience)
 	stats.reset()
@@ -56,6 +58,11 @@ func _get_strength(experience: int) -> int:
 	assert(strength_curve != null)
 	var level: float = _get_interpolated_level(experience)
 	return int(strength_curve.interpolate_baked(level))
+	
+func _get_intelligence(experience: int) -> int:
+	assert(intelligence_curve != null)
+	var level: float = _get_interpolated_level(experience)
+	return int(intelligence_curve.interpolate_baked(level))
 
 
 func _get_defense(experience: int) -> int:
