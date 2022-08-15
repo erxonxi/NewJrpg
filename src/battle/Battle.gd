@@ -161,8 +161,8 @@ func attack_by_index(index: int):
 		enemy.queue_free()
 		enemies.remove(enemy_selected)
 		check_enemies_alive()
-	else:
-		next_turn()
+		
+	next_turn()
 		
 func check_enemies_alive():
 	if enemies.size() == 0:
