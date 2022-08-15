@@ -1,3 +1,4 @@
 extends Node
 
-var members: Array = []
+var members := []
+var coins: int = 0

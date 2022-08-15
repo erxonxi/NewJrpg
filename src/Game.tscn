@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://src/main_menu/MainMenu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Game.gd" type="Script" id=2]
+[ext_resource path="res://src/Overlay.gd" type="Script" id=3]
 
 [node name="Game" type="Node"]
 script = ExtResource( 2 )
@@ -13,6 +14,7 @@ script = ExtResource( 2 )
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Overlay" type="CanvasLayer" parent="."]
+script = ExtResource( 3 )
 
 [node name="Panel" type="Panel" parent="Overlay"]
 margin_right = 512.0
@@ -24,3 +26,30 @@ margin_bottom = 288.0
 text = "GAME OVER"
 align = 1
 valign = 1
+
+[node name="Buttons" type="VBoxContainer" parent="Overlay/Panel"]
+margin_left = 168.0
+margin_top = 179.0
+margin_right = 348.0
+margin_bottom = 260.0
+
+[node name="NextLevel" type="Button" parent="Overlay/Panel/Buttons"]
+margin_right = 180.0
+margin_bottom = 20.0
+text = "Next Level"
+
+[node name="Restart" type="Button" parent="Overlay/Panel/Buttons"]
+margin_top = 24.0
+margin_right = 180.0
+margin_bottom = 44.0
+text = "Restart"
+
+[node name="Exit" type="Button" parent="Overlay/Panel/Buttons"]
+margin_top = 48.0
+margin_right = 180.0
+margin_bottom = 68.0
+text = "Exit"
+
+[connection signal="pressed" from="Overlay/Panel/Buttons/NextLevel" to="." method="_on_NextLevel_pressed"]
+[connection signal="pressed" from="Overlay/Panel/Buttons/Restart" to="." method="_on_Restart_pressed"]
+[connection signal="pressed" from="Overlay/Panel/Buttons/Exit" to="." method="_on_Exit_pressed"]
