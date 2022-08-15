@@ -17,6 +17,7 @@ var enemies_death := 0
 
 func _input(event):
 	if Input.is_action_pressed("ui_focus_next"):
+		yield(get_tree(), "idle_frame")
 		switch_enemy_selected()
 
 func initialize(battle_characters: Array, battle_enemies: Array):
@@ -158,16 +159,17 @@ func attack_by_index(index: int):
 		enemies_death += 1
 		enemy.get_parent().remove_child(enemy)
 		enemy.queue_free()
+		enemies.remove(enemy_selected)
 		check_enemies_alive()
 	else:
 		next_turn()
 		
 func check_enemies_alive():
-	if enemies.size() == enemies_death:
+	if enemies.size() == 0:
 		emit_signal("victory")
 		
 func check_characters_alive():
-	if characters.size() == characters_death:
+	if characters.size() == 0:
 		emit_signal("defeat")
 
 func enemy_attack_by_index(index: int):
@@ -181,6 +183,8 @@ func enemy_attack_by_index(index: int):
 	if character.stats.health <= 0:
 		characters_death += 1
 		character.get_parent().remove_child(character)
+		character.queue_free()
+		characters.remove(player_selected)
 		check_characters_alive()
 
 func play_enemy_turn():
@@ -191,7 +195,7 @@ func play_enemy_turn():
 	next_turn()
 
 func switch_enemy_selected():
-	if (enemy_selected < enemies.size() - 1 - enemies_death):
+	if (enemy_selected < enemies.size() - 1):
 		enemy_selected += 1
 	else:
 		enemy_selected = 0
@@ -199,7 +203,7 @@ func switch_enemy_selected():
 	show_enemy_selector()
 	
 func show_enemy_selector():
-	for index in range(enemies.size() - enemies_death):
+	for index in range(enemies.size()):
 		if index == enemy_selected:
 			enemies[index].selector.show()
 		else:
