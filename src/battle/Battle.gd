@@ -12,8 +12,9 @@ var enemies: Array = []
 var turn := 1
 var enemy_selected := 0
 var player_selected := 0
-var characters_death := 0
-var enemies_death := 0
+var enemy_turn := 0
+var player_turn := 0
+
 
 func _input(event):
 	if Input.is_action_pressed("ui_focus_next"):
@@ -132,14 +133,10 @@ func next_turn():
 			emit_signal("enemy_turn")
 
 func get_character_of_turn() -> Character:
-	var character: Character
-	var index = turn / 2
-	return characters[ceil(index - 1)]
+	return characters[player_turn]
 
 func get_enemy_of_turn() -> Character:
-	var character: Character
-	var index = turn / 2
-	return enemies[index - 1]
+	return enemies[enemy_turn]
 
 func get_enemie_selected() -> Character:
 	return enemies[enemy_selected] as Character
@@ -156,12 +153,16 @@ func attack_by_index(index: int):
 	enemy.stats.take_damage(hit)
 	
 	if enemy.stats.health <= 0:
-		enemies_death += 1
 		enemy.get_parent().remove_child(enemy)
 		enemy.queue_free()
 		enemies.remove(enemy_selected)
 		check_enemies_alive()
 		
+	if player_turn < characters.size() - 1:
+		player_turn += 1
+	else:
+		player_turn = 0
+	
 	next_turn()
 		
 func check_enemies_alive():
@@ -181,11 +182,15 @@ func enemy_attack_by_index(index: int):
 	character.stats.take_damage(hit)
 	
 	if character.stats.health <= 0:
-		characters_death += 1
 		character.get_parent().remove_child(character)
 		character.queue_free()
 		characters.remove(player_selected)
 		check_characters_alive()
+	
+	if enemy_turn < enemies.size() - 1:
+		enemy_turn += 1
+	else:
+		enemy_turn = 0
 
 func play_enemy_turn():
 	enemy_attack_by_index(0)
