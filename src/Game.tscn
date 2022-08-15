@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://src/main_menu/MainMenu.tscn" type="PackedScene" id=1]
 [ext_resource path="res://src/Game.gd" type="Script" id=2]
@@ -6,6 +6,8 @@
 [ext_resource path="res://assets/ui/ButtonNormal.tres" type="StyleBox" id=4]
 [ext_resource path="res://assets/Skillscreen.tres" type="DynamicFont" id=5]
 [ext_resource path="res://assets/ui/ButtonHover.tres" type="StyleBox" id=6]
+[ext_resource path="res://assets/characters/char_01.png" type="Texture" id=7]
+[ext_resource path="res://assets/ui/ButtonDisabled.tres" type="StyleBox" id=8]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://assets/Silkscreen.ttf"
@@ -24,6 +26,7 @@ script = ExtResource( 2 )
 [node name="Enemies" type="Node2D" parent="."]
 
 [node name="Overlay" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource( 3 )
 
 [node name="Panel" type="Panel" parent="Overlay"]
@@ -79,6 +82,173 @@ custom_styles/focus = ExtResource( 6 )
 custom_styles/normal = ExtResource( 4 )
 text = "Exit"
 
+[node name="Rewards" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="Rewards"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -170.5
+margin_top = -101.5
+margin_right = 170.5
+margin_bottom = 101.5
+
+[node name="Container" type="HBoxContainer" parent="Rewards/Panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -137.5
+margin_top = -75.0
+margin_right = 137.5
+margin_bottom = 75.0
+
+[node name="Char1" type="VBoxContainer" parent="Rewards/Panel/Container"]
+margin_right = 90.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 90, 0 )
+alignment = 1
+
+[node name="Name" type="Label" parent="Rewards/Panel/Container/Char1"]
+margin_top = 17.0
+margin_right = 90.0
+margin_bottom = 38.0
+custom_fonts/font = ExtResource( 5 )
+text = "Franci"
+align = 1
+valign = 1
+
+[node name="TextureRect" type="TextureRect" parent="Rewards/Panel/Container/Char1"]
+margin_top = 42.0
+margin_right = 90.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 0, 32 )
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 6
+
+[node name="Level" type="Label" parent="Rewards/Panel/Container/Char1"]
+margin_top = 78.0
+margin_right = 90.0
+margin_bottom = 99.0
+custom_fonts/font = ExtResource( 5 )
+text = "LVL 999"
+align = 1
+valign = 1
+
+[node name="Select" type="Button" parent="Rewards/Panel/Container/Char1"]
+margin_top = 103.0
+margin_right = 90.0
+margin_bottom = 133.0
+rect_min_size = Vector2( 0, 30 )
+custom_fonts/font = ExtResource( 5 )
+custom_styles/hover = ExtResource( 6 )
+custom_styles/pressed = ExtResource( 6 )
+custom_styles/focus = ExtResource( 6 )
+custom_styles/disabled = ExtResource( 8 )
+custom_styles/normal = ExtResource( 4 )
+text = "Select"
+
+[node name="Char2" type="VBoxContainer" parent="Rewards/Panel/Container"]
+margin_left = 94.0
+margin_right = 184.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 90, 0 )
+alignment = 1
+
+[node name="Name" type="Label" parent="Rewards/Panel/Container/Char2"]
+margin_top = 17.0
+margin_right = 90.0
+margin_bottom = 38.0
+custom_fonts/font = ExtResource( 5 )
+text = "Franci"
+align = 1
+valign = 1
+
+[node name="TextureRect" type="TextureRect" parent="Rewards/Panel/Container/Char2"]
+margin_top = 42.0
+margin_right = 90.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 0, 32 )
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 6
+
+[node name="Level" type="Label" parent="Rewards/Panel/Container/Char2"]
+margin_top = 78.0
+margin_right = 90.0
+margin_bottom = 99.0
+custom_fonts/font = ExtResource( 5 )
+text = "LVL 999"
+align = 1
+valign = 1
+
+[node name="Select" type="Button" parent="Rewards/Panel/Container/Char2"]
+margin_top = 103.0
+margin_right = 90.0
+margin_bottom = 133.0
+rect_min_size = Vector2( 0, 30 )
+custom_fonts/font = ExtResource( 5 )
+custom_styles/hover = ExtResource( 6 )
+custom_styles/pressed = ExtResource( 6 )
+custom_styles/focus = ExtResource( 6 )
+custom_styles/disabled = ExtResource( 8 )
+custom_styles/normal = ExtResource( 4 )
+text = "Select"
+
+[node name="Char3" type="VBoxContainer" parent="Rewards/Panel/Container"]
+margin_left = 188.0
+margin_right = 278.0
+margin_bottom = 150.0
+rect_min_size = Vector2( 90, 0 )
+alignment = 1
+
+[node name="Name" type="Label" parent="Rewards/Panel/Container/Char3"]
+margin_top = 17.0
+margin_right = 90.0
+margin_bottom = 38.0
+custom_fonts/font = ExtResource( 5 )
+text = "Franci"
+align = 1
+valign = 1
+
+[node name="TextureRect" type="TextureRect" parent="Rewards/Panel/Container/Char3"]
+margin_top = 42.0
+margin_right = 90.0
+margin_bottom = 74.0
+rect_min_size = Vector2( 0, 32 )
+texture = ExtResource( 7 )
+expand = true
+stretch_mode = 6
+
+[node name="Level" type="Label" parent="Rewards/Panel/Container/Char3"]
+margin_top = 78.0
+margin_right = 90.0
+margin_bottom = 99.0
+custom_fonts/font = ExtResource( 5 )
+text = "LVL 999"
+align = 1
+valign = 1
+
+[node name="Select" type="Button" parent="Rewards/Panel/Container/Char3"]
+margin_top = 103.0
+margin_right = 90.0
+margin_bottom = 133.0
+rect_min_size = Vector2( 0, 30 )
+custom_fonts/font = ExtResource( 5 )
+custom_styles/hover = ExtResource( 6 )
+custom_styles/pressed = ExtResource( 6 )
+custom_styles/focus = ExtResource( 6 )
+custom_styles/disabled = ExtResource( 8 )
+custom_styles/normal = ExtResource( 4 )
+text = "Select"
+
+[node name="Entities" type="Node2D" parent="Rewards"]
+
 [connection signal="pressed" from="Overlay/Panel/Buttons/NextLevel" to="." method="_on_NextLevel_pressed"]
 [connection signal="pressed" from="Overlay/Panel/Buttons/Restart" to="." method="_on_Restart_pressed"]
 [connection signal="pressed" from="Overlay/Panel/Buttons/Exit" to="." method="_on_Exit_pressed"]
+[connection signal="pressed" from="Rewards/Panel/Container/Char1/Select" to="." method="_on_Select_Character1_pressed"]
+[connection signal="pressed" from="Rewards/Panel/Container/Char2/Select" to="." method="_on_Select_Character2_pressed"]
+[connection signal="pressed" from="Rewards/Panel/Container/Char3/Select" to="." method="_on_Select_Character3_pressed"]

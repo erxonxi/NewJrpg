@@ -66,5 +66,32 @@ var enemies := [
 			'attacks_ids': [1],
 			'magics_ids': [1]
 		}
+	],
+	# Level 4
+	[
+		{
+			'id': 1,
+			'experience': 300,
+			'attacks_ids': [1],
+			'magics_ids': [1]
+		}
+	],
+	# Level 5
+	[
+		{
+			'id': 1,
+			'experience': 400,
+			'attacks_ids': [1],
+			'magics_ids': [1]
+		}
+	],
+	# Level 6
+	[
+		{
+			'id': 1,
+			'experience': 700,
+			'attacks_ids': [1],
+			'magics_ids': [1]
+		}
 	]
 ]

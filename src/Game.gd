@@ -8,7 +8,9 @@ var battle: Battle = null
 var level: int = 0
 
 func _ready():
+	$MainMenu.show()
 	$Overlay.hide()
+	$Rewards.hide()
 	$MainMenu.connect("new_game", self, "new_game")
 	
 func new_game():
@@ -70,6 +72,37 @@ func game_complated():
 	$Overlay/Panel/Buttons.hide()
 	$Overlay.show()
 
+func show_rewards():
+	$Rewards.show()
+	$Party.hide()
+	$Rewards/Entities.hide()
+	set_reward_by_index(1, 1, 75 * level)
+	set_reward_by_index(2, 2, 75 * level)
+	set_reward_by_index(3, 3, 75 * level)
+	
+func set_reward_by_index(index, character_index, experience):
+	var character: Character = character_scene.instance()
+	character.initialize(
+		character_index,
+		experience,
+		[1],
+		[1]
+	)
+	$Rewards/Entities.add_child(character)
+	
+	if (index == 1):
+		$Rewards/Panel/Container/Char1/Name.text = character.character_name
+		$Rewards/Panel/Container/Char1/Level.text = "LVL %s" % String(character.level)
+		$Rewards/Panel/Container/Char1/TextureRect.texture = character.get_texture()
+	elif index == 2:
+		$Rewards/Panel/Container/Char2/Name.text = character.character_name
+		$Rewards/Panel/Container/Char2/Level.text = "LVL %s" % String(character.level)
+		$Rewards/Panel/Container/Char2/TextureRect.texture = character.get_texture()
+	elif index == 3:
+		$Rewards/Panel/Container/Char3/Name.text = character.character_name
+		$Rewards/Panel/Container/Char3/Level.text = "LVL %s" % String(character.level)
+		$Rewards/Panel/Container/Char3/TextureRect.texture = character.get_texture()
+
 func _on_vicotry():
 	for memmber in Team.members:
 		memmber.experience += 100 * level
@@ -99,7 +132,12 @@ func _on_defeat():
 func _on_NextLevel_pressed():
 	if (level < Levels.enemies.size()):
 		level += 1
-		start_battle()
+		
+		if (level % 5 == 0):
+			show_rewards()
+		else:
+			start_battle()
+		
 		$Overlay.hide()
 	else:
 		game_complated()
@@ -112,3 +150,46 @@ func _on_Restart_pressed():
 
 func _on_Exit_pressed():
 	get_tree().quit()
+
+func _on_Select_Character1_pressed():
+	var reward: Character = $Rewards/Entities.get_children()[0]
+	
+	Team.members.append({
+		'id': reward.index,
+		'experience': reward.experience,
+		'attacks_ids': reward.attacks_ids,
+		'magics_ids': reward.magics_ids
+	})
+	
+	start_battle()
+	$Rewards.hide()
+	$Party.show()
+
+func _on_Select_Character2_pressed():
+	var reward: Character = $Rewards/Entities.get_children()[1]
+	
+	Team.members.append({
+		'id': reward.index,
+		'experience': reward.experience,
+		'attacks_ids': reward.attacks_ids,
+		'magics_ids': reward.magics_ids
+	})
+	
+	start_battle()
+	$Rewards.hide()
+	$Party.show()
+
+
+func _on_Select_Character3_pressed():
+	var reward: Character = $Rewards/Entities.get_children()[2]
+	
+	Team.members.append({
+		'id': reward.index,
+		'experience': reward.experience,
+		'attacks_ids': reward.attacks_ids,
+		'magics_ids': reward.magics_ids
+	})
+	
+	start_battle()
+	$Rewards.hide()
+	$Party.show()

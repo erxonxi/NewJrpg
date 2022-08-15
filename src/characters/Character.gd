@@ -42,6 +42,9 @@ func initialize(charater_index: int, character_experience: int, character_attack
 func on_health_changed(new_health, old_health):
 	$Skin/Bars/Health.value = stats.health
 
+func get_texture():
+	return $Skin/Sprite.texture
+
 func play_damaged():
 	$Skin/AnimationPlayer.play("damaged")
 
