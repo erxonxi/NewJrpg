@@ -89,7 +89,7 @@ func _on_vicotry():
 
 func _on_defeat():
 	battle.queue_free()
-	$Overlay/Panel/Label.text = "Defeat"
+	$Overlay/Panel/Label.text = "You lose"
 	$Overlay/Panel/Buttons.show()
 	$Overlay/Panel/Buttons/NextLevel.hide()
 	$Overlay/Panel/Buttons/Restart.show()
