@@ -43,6 +43,7 @@ func set_up_party():
 
 func set_up_enemies():
 	for children in $Enemies.get_children():
+		$Enemies.remove_child(children)
 		children.queue_free()
 		
 	for enemy in Levels.enemies[level]:
@@ -72,12 +73,19 @@ func game_complated():
 func _on_vicotry():
 	battle.queue_free()
 	$Overlay/Panel/Label.text = "Victory"
+	$Overlay/Panel/Buttons.show()
+	$Overlay/Panel/Buttons/NextLevel.show()
+	$Overlay/Panel/Buttons/Restart.show()
+	$Overlay/Panel/Buttons/Exit.show()
 	$Overlay.show()
 
 func _on_defeat():
 	battle.queue_free()
 	$Overlay/Panel/Label.text = "Defeat"
+	$Overlay/Panel/Buttons.show()
 	$Overlay/Panel/Buttons/NextLevel.hide()
+	$Overlay/Panel/Buttons/Restart.show()
+	$Overlay/Panel/Buttons/Exit.show()
 	$Overlay.show()
 
 func _on_NextLevel_pressed():
@@ -94,6 +102,7 @@ func _on_Restart_pressed():
 	level = 0
 	Team.members = []
 	new_game()
+	$Overlay.hide()
 
 func _on_Exit_pressed():
 	get_tree().quit()
