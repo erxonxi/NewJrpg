@@ -139,7 +139,7 @@ func get_character_of_turn() -> Character:
 func get_enemy_of_turn() -> Character:
 	var character: Character
 	var index = turn / 2
-	return characters[index - 1]
+	return enemies[index - 1]
 
 func get_enemie_selected() -> Character:
 	return enemies[enemy_selected] as Character

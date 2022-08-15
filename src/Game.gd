@@ -14,7 +14,7 @@ func _ready():
 func new_game():
 	Team.members.append({
 		'id': 2,
-		'experience': 64,
+		'experience': 300,
 		'attacks_ids': [1],
 		'magics_ids': [1]
 	})

@@ -39,5 +39,32 @@ var enemies := [
 			'attacks_ids': [1],
 			'magics_ids': [1]
 		}
+	],
+	# Level 3
+	[
+		{
+			'id': 1,
+			'experience': 128,
+			'attacks_ids': [1],
+			'magics_ids': [1]
+		},
+		{
+			'id': 3,
+			'experience': 6,
+			'attacks_ids': [1],
+			'magics_ids': [1]
+		},
+		{
+			'id': 3,
+			'experience': 6,
+			'attacks_ids': [1],
+			'magics_ids': [1]
+		},
+		{
+			'id': 3,
+			'experience': 6,
+			'attacks_ids': [1],
+			'magics_ids': [1]
+		}
 	]
 ]
