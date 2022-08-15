@@ -11,3 +11,16 @@ script = ExtResource( 2 )
 [node name="Party" type="Node2D" parent="."]
 
 [node name="Enemies" type="Node2D" parent="."]
+
+[node name="Overlay" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="Overlay"]
+margin_right = 512.0
+margin_bottom = 288.0
+
+[node name="Label" type="Label" parent="Overlay/Panel"]
+margin_right = 512.0
+margin_bottom = 288.0
+text = "GAME OVER"
+align = 1
+valign = 1

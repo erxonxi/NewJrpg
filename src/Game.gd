@@ -7,6 +7,7 @@ var character_scene = preload("res://src/characters/Character.tscn")
 var battle: Battle = null
 
 func _ready():
+	$Overlay.hide()
 	$MainMenu.connect("new_game", self, "new_game")
 	
 func new_game():
@@ -31,6 +32,10 @@ func start_battle():
 
 func _on_vicotry():
 	battle.queue_free()
+	$Overlay/Panel/Label.text = "Victory"
+	$Overlay.show()
 
 func _on_defeat():
 	battle.queue_free()
+	$Overlay/Panel/Label.text = "Defeat"
+	$Overlay.show()
