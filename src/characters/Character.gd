@@ -33,8 +33,6 @@ func initialize(charater_index: int, character_experience: int, character_attack
 	$Skin/Selector.hide()
 	$Skin/Bars/Health.max_value = stats.health
 	$Skin/Bars/Health.value = stats.health
-	print($Skin/Bars/Health.max_value)
-	print($Skin/Bars/Health.value)
 	
 	stats.connect("health_changed", self, "on_health_changed")
 
