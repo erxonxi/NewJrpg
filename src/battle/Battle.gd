@@ -3,6 +3,8 @@ class_name Battle
 
 signal characters_turn
 signal enemy_turn
+signal victory
+signal defeat
 
 var characters: Array = []
 var enemies: Array = []
@@ -10,6 +12,8 @@ var enemies: Array = []
 var turn := 1
 var enemy_selected := 0
 var player_selected := 0
+var characters_death := 0
+var enemies_death := 0
 
 func initialize(battle_characters: Array, battle_enemies: Array):
 	characters = battle_characters
@@ -106,19 +110,19 @@ func next_turn():
 		turn = 1
 		
 	if turn == 1:
-		emit_signal("character_turn")
+		emit_signal("characters_turn")
 	elif turn == 2:
 		emit_signal("enemy_turn")
 	elif turn == 3:
-		emit_signal("character_turn")
+		emit_signal("characters_turn")
 	elif turn == 4:
 		emit_signal("enemy_turn")
 	elif turn == 5:
-		emit_signal("character_turn")
+		emit_signal("characters_turn")
 	elif turn == 6:
 		emit_signal("enemy_turn")
 	elif turn == 7:
-		emit_signal("character_turn")
+		emit_signal("characters_turn")
 	elif turn == 8:
 		emit_signal("enemy_turn")
 
@@ -134,15 +138,73 @@ func get_character_of_turn() -> Character:
 		character = characters[3]
 	return character
 
+func get_enemy_of_turn() -> Character:
+	var enemy: Character
+	if turn == 2:
+		enemy = enemies[0]
+	elif turn == 4:
+		enemy = enemies[1]
+	elif turn == 6:
+		enemy = enemies[2]
+	elif turn == 8:
+		enemy = enemies[3]
+	return enemy
+
 func get_enemie_selected() -> Character:
 	return enemies[enemy_selected] as Character
+
+func get_character_selected() -> Character:
+	return characters[player_selected] as Character
 
 func attack_by_index(index: int):
 	var character = get_character_of_turn()
 	var attack: AttackSkill = character.attacks.get_attacks()[index]
 	var hit = attack.get_hit(character.stats._get_strength())
 	var enemy = get_enemie_selected()
+	enemy.play_damaged()
 	enemy.stats.take_damage(hit)
+	
+	if enemy.stats.health <= 0:
+		enemies_death += 1
+		enemy.queue_free()
+		check_enemies_alive()
+	else:
+		next_turn()
+		
+func check_enemies_alive():
+	if enemies.size() == enemies_death:
+		emit_signal("victory")
+		
+func check_characters_alive():
+	if characters.size() == characters_death:
+		emit_signal("defeat")
+
+func enemy_attack_by_index(index: int):
+	var enemy = get_enemy_of_turn()
+	var attack: AttackSkill = enemy.attacks.get_attacks()[index]
+	var hit = attack.get_hit(enemy.stats._get_strength())
+	var character = get_character_selected()
+	character.play_damaged()
+	character.stats.take_damage(hit)
+	
+	if character.stats.health <= 0:
+		characters_death += 1
+		character.queue_free()
+		check_characters_alive()
+
+func play_enemy_turn():
+	if turn == 2:
+		enemy_attack_by_index(0)
+	elif turn == 4:
+		enemy_attack_by_index(0)
+	elif turn == 6:
+		enemy_attack_by_index(0)
+	elif turn == 8:
+		enemy_attack_by_index(0)
+		
+	yield(get_tree().create_timer(0.5), "timeout")
+	
+	next_turn()
 
 # Logic
 func _on_characters_turn():
@@ -151,8 +213,9 @@ func _on_characters_turn():
 func _on_enemy_turn():
 	$PlayerPanel/Container/Tabs.hide()
 	
-	yield(get_tree().create_timer(2), "timeout")
+	yield(get_tree().create_timer(0.5), "timeout")
 	
+	play_enemy_turn()
 
 # User Menu Buttons
 func _on_Attack_pressed():
@@ -167,19 +230,15 @@ func _on_Exit_pressed():
 # Attacks Buttons
 func _on_Attack1_pressed():
 	attack_by_index(0)
-	next_turn()
 
 func _on_Attack2_pressed():
 	attack_by_index(1)
-	next_turn()
 
 func _on_Attack3_pressed():
 	attack_by_index(2)
-	next_turn()
 
 func _on_Attack4_pressed():
 	attack_by_index(3)
-	next_turn()
 
 # Magics Buttons
 func _on_Magic1_pressed():
