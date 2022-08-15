@@ -25,6 +25,9 @@ func initialize(battle_characters: Array, battle_enemies: Array):
 	
 	connect("characters_turn", self, "_on_characters_turn")
 	connect("enemy_turn", self, "_on_enemy_turn")
+	
+	$Debug.show()
+	$Debug.text = "%s character turn" % turn
 		
 func init_characters():
 	var character_positions := [
@@ -109,46 +112,28 @@ func next_turn():
 	else:
 		turn = 1
 		
-	if turn == 1:
-		emit_signal("characters_turn")
-	elif turn == 2:
-		emit_signal("enemy_turn")
-	elif turn == 3:
-		emit_signal("characters_turn")
-	elif turn == 4:
-		emit_signal("enemy_turn")
-	elif turn == 5:
-		emit_signal("characters_turn")
-	elif turn == 6:
-		emit_signal("enemy_turn")
-	elif turn == 7:
-		emit_signal("characters_turn")
-	elif turn == 8:
-		emit_signal("enemy_turn")
+
+	var index = turn / 2
+	if (turn % 2 == 0):
+		if (range(enemies.size()).has(index - 1)):
+			emit_signal("enemy_turn")
+		else:
+			emit_signal("characters_turn")
+	else:
+		if (range(characters.size()).has(index)):
+			emit_signal("characters_turn")
+		else:
+			emit_signal("enemy_turn")
 
 func get_character_of_turn() -> Character:
 	var character: Character
-	if turn == 1:
-		character = characters[0]
-	elif turn == 3:
-		character = characters[1]
-	elif turn == 5:
-		character = characters[2]
-	elif turn == 7:
-		character = characters[3]
-	return character
+	var index = turn / 2
+	return characters[ceil(index - 1)]
 
 func get_enemy_of_turn() -> Character:
-	var enemy: Character
-	if turn == 2:
-		enemy = enemies[0]
-	elif turn == 4:
-		enemy = enemies[1]
-	elif turn == 6:
-		enemy = enemies[2]
-	elif turn == 8:
-		enemy = enemies[3]
-	return enemy
+	var character: Character
+	var index = turn / 2
+	return characters[index - 1]
 
 func get_enemie_selected() -> Character:
 	return enemies[enemy_selected] as Character
@@ -193,24 +178,21 @@ func enemy_attack_by_index(index: int):
 		check_characters_alive()
 
 func play_enemy_turn():
-	if turn == 2:
-		enemy_attack_by_index(0)
-	elif turn == 4:
-		enemy_attack_by_index(0)
-	elif turn == 6:
-		enemy_attack_by_index(0)
-	elif turn == 8:
-		enemy_attack_by_index(0)
-		
+	enemy_attack_by_index(0)
+	
 	yield(get_tree().create_timer(0.5), "timeout")
 	
 	next_turn()
 
 # Logic
 func _on_characters_turn():
+	$Debug.show()
+	$Debug.text = "%s character turn" % turn
 	$PlayerPanel/Container/Tabs.show()
 
 func _on_enemy_turn():
+	$Debug.show()
+	$Debug.text = "%s enemy turn" % turn
 	$PlayerPanel/Container/Tabs.hide()
 	
 	yield(get_tree().create_timer(0.5), "timeout")

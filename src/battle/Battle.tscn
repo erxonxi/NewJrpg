@@ -186,6 +186,10 @@ position = Vector2( 453, 68 )
 [node name="Enemy4" type="Position2D" parent="Positions"]
 position = Vector2( 423, 130 )
 
+[node name="Debug" type="Label" parent="."]
+margin_right = 542.0
+margin_bottom = 53.0
+
 [connection signal="pressed" from="PlayerPanel/Container/Actions/Attack" to="." method="_on_Attack_pressed"]
 [connection signal="pressed" from="PlayerPanel/Container/Actions/Magics" to="." method="_on_Magics_pressed"]
 [connection signal="pressed" from="PlayerPanel/Container/Actions/Exit" to="." method="_on_Exit_pressed"]
