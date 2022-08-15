@@ -13,10 +13,13 @@ var magics_ids := [1]
 onready var skin = $Skin
 onready var attacks = $Attacks
 onready var magics = $Magics
+onready var selector = $Skin/Selector
 
 func initialize(charater_index: int, character_experience: int, character_attacks_ids: Array, character_magics_ids: Array):
 	index = charater_index
 	experience = character_experience
+	attacks_ids = character_attacks_ids
+	magics_ids = character_magics_ids
 	
 	var character_data = load("res://resources/characters/Char%s.tres" % index) as CharacterData
 	
@@ -24,12 +27,11 @@ func initialize(charater_index: int, character_experience: int, character_attack
 	$Skin/Sprite.texture = character_data.texture
 	character_name = character_data.name
 	
-	attacks_ids = character_attacks_ids
-	magics_ids = character_magics_ids
-	
 	setup_attacks()
 	setup_magics()
 	
+	$Skin/Selector.hide()
+
 func play_damaged():
 	$Skin/AnimationPlayer.play("damaged")
 

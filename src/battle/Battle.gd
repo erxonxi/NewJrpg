@@ -15,6 +15,10 @@ var player_selected := 0
 var characters_death := 0
 var enemies_death := 0
 
+func _input(event):
+	if Input.is_action_pressed("ui_focus_next"):
+		switch_enemy_selected()
+
 func initialize(battle_characters: Array, battle_enemies: Array):
 	characters = battle_characters
 	enemies = battle_enemies
@@ -22,6 +26,7 @@ func initialize(battle_characters: Array, battle_enemies: Array):
 	init_characters()
 	init_enemies()
 	init_first_character_menu()
+	show_enemy_selector()
 	
 	connect("characters_turn", self, "_on_characters_turn")
 	connect("enemy_turn", self, "_on_enemy_turn")
@@ -151,6 +156,7 @@ func attack_by_index(index: int):
 	
 	if enemy.stats.health <= 0:
 		enemies_death += 1
+		enemy.get_parent().remove_child(enemy)
 		enemy.queue_free()
 		check_enemies_alive()
 	else:
@@ -174,7 +180,7 @@ func enemy_attack_by_index(index: int):
 	
 	if character.stats.health <= 0:
 		characters_death += 1
-		character.queue_free()
+		character.get_parent().remove_child(character)
 		check_characters_alive()
 
 func play_enemy_turn():
@@ -183,6 +189,21 @@ func play_enemy_turn():
 	yield(get_tree().create_timer(0.5), "timeout")
 	
 	next_turn()
+
+func switch_enemy_selected():
+	if (enemy_selected < enemies.size() - 1 - enemies_death):
+		enemy_selected += 1
+	else:
+		enemy_selected = 0
+		
+	show_enemy_selector()
+	
+func show_enemy_selector():
+	for index in range(enemies.size() - enemies_death):
+		if index == enemy_selected:
+			enemies[index].selector.show()
+		else:
+			enemies[index].selector.hide()
 
 # Logic
 func _on_characters_turn():
