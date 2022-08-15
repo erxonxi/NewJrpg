@@ -2,6 +2,8 @@
 
 [ext_resource path="res://src/main_menu/MainMenu.gd" type="Script" id=1]
 [ext_resource path="res://assets/Skillscreen.tres" type="DynamicFont" id=2]
+[ext_resource path="res://assets/ui/ButtonNormal.tres" type="StyleBox" id=3]
+[ext_resource path="res://assets/ui/ButtonHover.tres" type="StyleBox" id=4]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://assets/Silkscreen.ttf"
@@ -9,16 +11,6 @@ font_path = "res://assets/Silkscreen.ttf"
 [sub_resource type="DynamicFont" id=3]
 size = 22
 font_data = SubResource( 1 )
-
-[sub_resource type="StyleBoxFlat" id=4]
-bg_color = Color( 0.172549, 0.172549, 0.172549, 1 )
-border_color = Color( 1, 1, 1, 1 )
-anti_aliasing = false
-
-[sub_resource type="StyleBoxFlat" id=2]
-bg_color = Color( 0, 0, 0, 1 )
-border_color = Color( 1, 1, 1, 1 )
-anti_aliasing = false
 
 [node name="MainMenu" type="Control"]
 margin_right = 512.0
@@ -57,10 +49,10 @@ margin_right = 180.0
 margin_bottom = 47.0
 rect_min_size = Vector2( 0, 40 )
 custom_fonts/font = ExtResource( 2 )
-custom_styles/hover = SubResource( 4 )
-custom_styles/pressed = SubResource( 4 )
-custom_styles/focus = SubResource( 4 )
-custom_styles/normal = SubResource( 2 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/normal = ExtResource( 3 )
 text = "New Game"
 
 [node name="Load" type="Button" parent="Panel/Buttons"]
@@ -69,10 +61,10 @@ margin_right = 180.0
 margin_bottom = 95.0
 rect_min_size = Vector2( 0, 40 )
 custom_fonts/font = ExtResource( 2 )
-custom_styles/hover = SubResource( 4 )
-custom_styles/pressed = SubResource( 4 )
-custom_styles/focus = SubResource( 4 )
-custom_styles/normal = SubResource( 2 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/normal = ExtResource( 3 )
 text = "Load"
 
 [node name="Exit" type="Button" parent="Panel/Buttons"]
@@ -81,10 +73,10 @@ margin_right = 180.0
 margin_bottom = 143.0
 rect_min_size = Vector2( 0, 40 )
 custom_fonts/font = ExtResource( 2 )
-custom_styles/hover = SubResource( 4 )
-custom_styles/pressed = SubResource( 4 )
-custom_styles/focus = SubResource( 4 )
-custom_styles/normal = SubResource( 2 )
+custom_styles/hover = ExtResource( 4 )
+custom_styles/pressed = ExtResource( 4 )
+custom_styles/focus = ExtResource( 4 )
+custom_styles/normal = ExtResource( 3 )
 text = "Exit"
 
 [connection signal="pressed" from="Panel/Buttons/NewGame" to="." method="_on_NewGame_pressed"]
